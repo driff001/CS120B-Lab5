@@ -4,19 +4,19 @@
 #endif
 enum S_STATES { S_Wait, S_Press1, S_Press2,S_Press3,S_PressWait1, S_PressWait2} S_State;
 void Tick(){
-unsigned int bruh;
+
    switch(S_State) //transistions
    {
-    bruh = 255 - PINA;
+    
     case S_Wait:
     //wait state
-        if(bruh == 0b00){
+        if(PINA == 0b00){
             S_State = S_Wait;
         }
-        else if(bruh == 0x01){
+        else if(PINA == 0x01){
             S_State = S_Press1;
         }
-        else if( bruh == 0x02){
+        else if( PINA == 0x02){
             S_State = S_Press2;
         }
         else{
@@ -26,39 +26,39 @@ unsigned int bruh;
         break;
 
     case S_Press1: //increment state
-        if(bruh == 0b00){
+        if(PINA == 0b00){
           S_State = S_Wait;
         }
-        else if ( bruh == 0b01){
+        else if ( PINA == 0b01){
           S_State = S_PressWait1;
         }
-        else if(bruh == 0x02){
+        else if(PINA == 0x02){
           S_State = S_Press2;
         }
         S_State = (PINA == 0x03)? S_Press3 : S_State;
         break;
 
     case S_Press2: //decrement state
-        if(bruh== 0b00){
+        if(PINA== 0b00){
         S_State = S_Wait;
         }
-        else if ( bruh == 0b10){
+        else if ( PINA == 0b10){
           S_State = S_PressWait2;
         }
-        else if(bruh == 0x01){
+        else if(PINA == 0x01){
           S_State = S_Press1;
         }
-        S_State = (bruh == 0x03)? S_Press3 : S_State;
+        S_State = (PINA== 0x03)? S_Press3 : S_State;
         break;
 
     case S_Press3: //increment state
-        if(bruh == 0b00){
+        if(PINA == 0b00){
             S_State = S_Wait;
         }
-        else if(bruh == 0x01){
+        else if(PINA == 0x01){
             S_State = S_Press1;
         }
-        else if(bruh == 0x02){
+        else if(PINA == 0x02){
             S_State = S_Press2;
         }
         else{
@@ -67,10 +67,10 @@ unsigned int bruh;
         break;
 
     case S_PressWait1: 
-        if (bruh == 0b00){
+        if (PINA == 0b00){
           S_State = S_Wait;
         }
-        else if(bruh == 0x02){
+        else if(PINA == 0x02){
           S_State = S_Press2;
         }
         else{
@@ -79,10 +79,10 @@ unsigned int bruh;
         S_State = (bruh == 0x03)? S_Press3 : S_State;
         break;
     case S_PressWait2:
-        if (bruh == 0b00){
+        if (PINA == 0b00){
           S_State = S_Wait;
         }
-        else if(bruh == 0x01){
+        else if(PINA == 0x01){
           S_State = S_Press1;
         }
         else{
