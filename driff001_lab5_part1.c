@@ -6,12 +6,13 @@
 int main(void) {
 
 PORTC = 0b00000000;
-unsigned int num = ~PINA;
+
 unsigned int i = 0b00000000;
 unsigned int j = 0b1000000;
 
 while(1){
-
+unsigned int num = ~PINA;
+  
 i = 0;  
 if( num > 0b1111){
 num = num - j;
