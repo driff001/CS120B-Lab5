@@ -12,7 +12,7 @@ unsigned int j = 0b1000000;
 unsigned int num = 0;
   
 while(1){
-num = ~PINA;
+num = 255 - PINA;
   
 i = 0;  
 if( num > 0b1111){  
