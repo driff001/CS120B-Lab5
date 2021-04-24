@@ -7,8 +7,9 @@ void Tick(){
 unsigned int bruh;
    switch(S_State) //transistions
    {
+    bruh = 255 - PINA;
     case S_Wait:
-    bruh = 255 - PINA;//wait state
+    //wait state
         if(bruh == 0b00){
             S_State = S_Wait;
         }
