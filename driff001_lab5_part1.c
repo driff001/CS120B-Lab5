@@ -15,6 +15,9 @@ while(1){
 num = ~PINA;
   
 i = 0;  
+if( num > 0b1111){  
+
+}
 if( num > 0b1111){
 num = num - j;
 i = num<<4;
@@ -27,7 +30,7 @@ else if ( num <= 0b1100 && num >= 0b1010){
 i =  0b111110;
 
 }
-else if ( num <= 0b1001 && num >= 0b0111){
+if ( num <= 0b1001 && num >= 0b0111){
 i =  0b111100;
 }
 
