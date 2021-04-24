@@ -4,9 +4,11 @@
 #endif
 enum S_STATES { S_Wait, S_Press1, S_Press2,S_Press3,S_PressWait1, S_PressWait2} S_State;
 void Tick(){
+unsigned int bruh;
    switch(S_State) //transistions
    {
-    case S_Wait: //wait state
+    case S_Wait:
+    bruh = 255 - PINA;//wait state
         if(bruh == 0b00){
             S_State = S_Wait;
         }
@@ -127,12 +129,11 @@ int main(void) {
     DDRA = 0x00; PORTA = 0x00;
     DDRC = 0xFF; PORTC = 0x07;
     
-    unsigned int bruh;
     
     /* Insert your solution below */
     S_State = S_Wait;
     while (1) {
-        bruh = ~PINA;
+        
         Tick();
     }
     return 1;
