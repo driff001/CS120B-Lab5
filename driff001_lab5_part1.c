@@ -9,9 +9,10 @@ PORTC = 0b00000000;
 
 unsigned int i = 0b00000000;
 unsigned int j = 0b1000000;
-
+unsigned int num = 0;
+  
 while(1){
-unsigned int num = ~PINA;
+num = ~PINA;
   
 i = 0;  
 if( num > 0b1111){
