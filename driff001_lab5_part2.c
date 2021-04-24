@@ -76,7 +76,7 @@ void Tick(){
         else{
           S_State = S_PressWait1;
         }
-        S_State = (bruh == 0x03)? S_Press3 : S_State;
+        S_State = (PINA == 0x03)? S_Press3 : S_State;
         break;
     case S_PressWait2:
         if (PINA == 0b00){
@@ -88,7 +88,7 @@ void Tick(){
         else{
           S_State = S_PressWait2;
         }
-        S_State = (bruh == 0x03)? S_Press3 : S_State;
+        S_State = (PINA == 0x03)? S_Press3 : S_State;
         break;
    }
 
@@ -111,7 +111,7 @@ void Tick(){
         PORTC = PORTC;
         break;
       case S_Press3: //incrment state
-        if (bruh == 0b11){
+        if (PINA == 0b11){
         PORTC = 0b00;
         }
         break; 
