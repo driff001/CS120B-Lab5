@@ -15,7 +15,7 @@
 #endif
 void Tick();
 unsigned int count = 0;
-enum S_STATES { S_Wait, S_Press1, S_Press2,S_Press3,S_Press4,S_Press5,S_Press6,S_Press7,S_Press8,S_PressWait1} S_State;
+enum S_STATES { S_Wait, S_Press1, S_Press2,S_Press3,S_PressWait1} S_State;
 
 void Tick(){
 
@@ -35,22 +35,7 @@ void Tick(){
         }
         else if((~PINA & 0x01) && count == 2 ){
             S_State = S_Press3;
-        }
-        else if((~PINA & 0x01) == 0x01 && count == 3 ){
-            S_State = S_Press4;
-        }
-        else if((~PINA & 0x01) == 0x01 && count == 4 ){
-            S_State = S_Press5;
-        }
-        else if((~PINA & 0x01) == 0x01 && count == 5 ){
-            S_State = S_Press6;
-        }
-	else if((~PINA & 0x01) == 0x01 && count == 6 ){
-            S_State = S_Press7;
-        }
-	 else if((~PINA & 0x01) == 0x01 && count == 7 ){
-            S_State = S_Press8;
-        }
+	}
 
     	break;
 
@@ -84,55 +69,6 @@ void Tick(){
         
         break;
 
-     case S_Press4: //increment state
-        if((~PINA & 0x01) == 0b00){
-            S_State = S_Wait;
-        }
-        else if((~PINA & 0x01) == 0x01){
-            S_State = S_PressWait1;
-        }
-
-        break;
-      case S_Press5: //increment state
-        if((~PINA & 0x01) == 0b00){
-            S_State = S_Wait;
-        }
-        else if((~PINA & 0x01) == 0x01){
-            S_State = S_PressWait1;
-        }
-
-        break;
-      case S_Press6: //increment state
-        if((~PINA & 0x01) == 0b00){
-            S_State = S_Wait;
-        }
-        else if( (~PINA & 0x01) == 0x01){
-            S_State = S_PressWait1;
-        }
-
-        break;
-       case S_Press7: //increment state
-        if((~PINA & 0x01) == 0b00){
-            S_State = S_Wait;
-        }
-        else if((~PINA & 0x01) == 0x01){
-            S_State = S_PressWait1;
-        }
-	break;
-
-        case S_Press8:
-         if((~PINA & 0x01) == 0b00){
-            S_State = S_Wait;
-        }
-        else if((~PINA & 0x01) == 0x01){
-            S_State = S_PressWait1;
-        }
-  
-
-
-        break;
-
-
 
 
 
@@ -145,28 +81,12 @@ void Tick(){
        else if(  (~PINA & 0x01) == 0x01 && count == 0 ){
             S_State = S_Press1;
         }
-        else if((~PINA & 0x01) == 0x01 && count == 1 ){
-            S_State = S_Press2;
-        }
-        else if((~PINA & 0x01) && count == 2 ){
-            S_State = S_Press3;
-        }
-        else if((~PINA & 0x01) == 0x01 && count == 3 ){
-            S_State = S_Press4;
-        }
-        else if((~PINA & 0x01) == 0x01 && count == 4 ){
-            S_State = S_Press5;
-        }
-        else if((~PINA & 0x01) == 0x01 && count == 5 ){
-            S_State = S_Press6;
-        }
-        else if((~PINA & 0x01) && count == 6 ){
-            S_State = S_Press7;
-        }
-	 else if((~PINA & 0x01) && count == 7 ){
-            S_State = S_Press8;
-        }
-
+        else if((~PINA & 0x01) == 0x01 && count == 1){
+	    S_State = S_Press2;
+	}
+        else if((~PINA & 0x01) == 0x01 && count == 2){
+        S_State = S_Press3;
+	}
         else{
             S_State = S_PressWait1;
 	}
@@ -177,7 +97,7 @@ void Tick(){
    {
       case S_Press1:
         ++count;
-        PORTB = 0b01;
+        PORTB = 0x30;
         
         break;
 
@@ -187,32 +107,13 @@ void Tick(){
       case S_Press2: //incrment state
        
         ++count;
-        PORTB = 0b11;
+        PORTB = 0x0C;
         break;
       case S_Press3: //incrment state
 	++count;
-        PORTB = 0b111;
+        PORTB = 0x03;
         break; 
-      case S_Press4:
-        ++count;	
-        PORTB = 0b1111;
-        break;
-      case S_Press5:
-	++count;
-        PORTB = 0b11111;
-	break;
-      case S_Press6:
-	++count;
-        PORTB = 0b111111;
-        break;
-      case S_Press7:
-   
-        PORTB = 0b1111111;
-        break;
-      case S_Press8:
-        count = 0;
-        PORTB = 0b0;
-        break;
+     
 
 	
       case S_PressWait1:
